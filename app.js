@@ -7,6 +7,8 @@ const bodyParser = require("body-parser");
 
 var app = express();
 var port = process.env.PORT || 3000;
+var mailChimpAPIKey = "https://login.mailchimp.com/?_ga=2.160350900.840228815.1566729951-456389472.1566729951&_gac=1.191119832.1566729951.CjwKCAjw44jrBRAHEiwAZ9igKIeoA2uf961inrL8hSx911HMKfCv5PjxAtORT7Bos0VtABJUUkaFzxoCTXwQAvD_BwE";
+var mailChimpAudienceKey = "https://login.mailchimp.com/?_ga=2.160350900.840228815.1566729951-456389472.1566729951&_gac=1.191119832.1566729951.CjwKCAjw44jrBRAHEiwAZ9igKIeoA2uf961inrL8hSx911HMKfCv5PjxAtORT7Bos0VtABJUUkaFzxoCTXwQAvD_BwE";
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended:true}));
@@ -46,11 +48,11 @@ app.post("/", (req, res) => {
   var dataJson = JSON.stringify(data);
 
   var options = {
-    uri: 'https://us3.api.mailchimp.com/3.0/lists/2d67b0f463',
+    uri: "https://us3.api.mailchimp.com/3.0/lists/" + mailChimpAudienceKey,
     method: "POST",
     headers: {
       'content-type': 'application/json',
-      'Authorization': "Borui 2d47b3050ab7da648f1726f86b41723a-us3"
+      'Authorization': "Borui " + mailChimpAPIKey
     },
     body: dataJson
   };
